@@ -1,0 +1,12 @@
+# Environments and secrets: credentials never enter this repository.
+.venv/
+.env
+.token_cache.json
+
+# Python build and test artifacts
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.pytest_cache/

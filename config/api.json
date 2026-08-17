@@ -1,0 +1,38 @@
+{
+  "base_url": "https://openapi.tossinvest.com",
+  "token_path": "/oauth2/token",
+  "spec_version": "1.2.14",
+  "spec_url": "https://openapi.tossinvest.com/openapi-docs/latest/openapi.json",
+  "docs_index": "https://developers.tossinvest.com/llms.txt",
+  "token_cache_file": ".token_cache.json",
+  "token_expiry_margin_seconds": 120,
+  "request_timeout_seconds": 10,
+  "max_retries_429": 3,
+  "rate_limit_groups_per_second": {
+    "AUTH": 5,
+    "ACCOUNT": 1,
+    "ASSET": 5,
+    "STOCK": 5,
+    "STOCK_ALL": 1,
+    "STOCK_TRADING_TREND": 10,
+    "MARKET_INFO": 3,
+    "MARKET_DATA": 15,
+    "MARKET_DATA_CHART": 20,
+    "RANKING": 5,
+    "MARKET_INDICATOR": 10,
+    "MARKET_INDICATOR_CHART": 5,
+    "ORDER": 10,
+    "ORDER_HISTORY": 5,
+    "ORDER_INFO": 6,
+    "CONDITIONAL_ORDER": 5,
+    "CONDITIONAL_ORDER_HISTORY": 10
+  },
+  "notes": [
+    "Provenance: rate_limit_groups_per_second values and the ORDER_INFO peak-hours note are transcribed from openapi.tossinvest.com/openapi-docs/overview.md (retrieved 2026-08-17); the vendored spec defines only the group names and the X-RateLimit-* headers. No code depends on these numbers.",
+    "Rate limits are documented per client x API group and may change without notice; the X-RateLimit-Limit response header is authoritative over this table.",
+    "ORDER_INFO drops to 3 requests/second during 09:00-09:10 KST; ORDER stays at 10.",
+    "Exactly one access token is valid per client; re-issuing invalidates the previous token immediately.",
+    "Calls from IPs not registered in WTS Settings > Open API > Allowed IP management fail with 403.",
+    "There is no sandbox environment; every order-path call with real credentials is live."
+  ]
+}
