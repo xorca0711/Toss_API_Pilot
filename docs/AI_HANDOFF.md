@@ -72,8 +72,10 @@ Use a writable UV_CACHE_DIR for local builds when sandbox caches fail.
 
 Read docs/evidence/milestone4-verification.json and docs/MILESTONE4.md for final
 results. Toss timed out at OAuth connection; SEC/DART settings were absent.
-Official Apple/Samsung HTML collection succeeded. Do not claim hosted CI ran,
-the full upstream contract is current, or authenticated broker reads succeeded.
+Official Apple/Samsung HTML collection succeeded. Hosted Linux/Windows CI later
+passed for implementation commit f5b0f12, published in PR #2; see PROJECT_STATE
+for the workflow link. Do not claim the full upstream contract is current or
+authenticated broker reads succeeded.
 The old no-push-API assertion is superseded by current official WebSocket docs.
 
 ## Remaining work

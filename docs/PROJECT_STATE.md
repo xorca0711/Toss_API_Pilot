@@ -13,6 +13,11 @@ docs/evidence/publication-verification.json for before/after hashes.
 Publication authorization does not imply merge approval or validation of live
 broker behavior. GitHub carries the current PR/check status.
 
+Publication completed: implementation commit `f5b0f126701109e020985ddc71304c4c0e1e0968`
+was pushed and [PR #2](https://github.com/xorca0711/Toss_API_Pilot/pull/2) opened
+against main. Both Linux and Windows jobs passed on the push and PR workflows
+for that implementation commit. This status update is a documentation-only follow-up.
+
 ## Current delivery
 
 Milestones 1-4 are implemented. Numerical/provider foundations are verified offline;
@@ -39,7 +44,8 @@ and [AUTOMATION_AND_STORAGE](AUTOMATION_AND_STORAGE.md) for the later workflow.
   docs/evidence/verification.json retains the earlier M1-3 baseline.
 - Local browser inspection confirms readable reports, visible synthetic labels,
   separate horizon panels, charts, scenarios and source tables.
-- CI is configured for Linux and Windows, but no hosted run has been observed.
+- Hosted Linux and Windows verification passed for implementation commit f5b0f12;
+  [PR workflow evidence](https://github.com/xorca0711/Toss_API_Pilot/actions/runs/38116903007).
 - Authorized Toss authentication was attempted but the connection timed out
   before a response. No token, account data, candle data or order resulted.
   Three official Apple/Samsung disclosures were fetched successfully, retained
