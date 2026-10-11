@@ -7,7 +7,7 @@ placement exists only behind an explicit dry-run gate (see toss_pilot.orders).
 from toss_pilot.client import TossInvestClient
 from toss_pilot.errors import CredentialsMissing, LiveOrderBlocked, TossApiError
 
-__version__ = "0.1.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "TossInvestClient",

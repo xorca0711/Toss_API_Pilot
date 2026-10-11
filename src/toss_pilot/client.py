@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import math
 import os
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -24,11 +25,8 @@ from toss_pilot.errors import LiveOrderBlocked, TossApiError
 ACCOUNT_HEADER = "X-Tossinvest-Account"
 _RETRYABLE_401_CODES = {"expired-token", "invalid-token"}
 
-# Deny-by-default at the transport: any non-GET under these prefixes is a real
-# order mutation upstream (no sandbox exists), so it is refused unless the
-# caller passes allow_live_order=True AND the process environment opts in.
-# The orders.py wrappers set the flag only after their own dry-run gate.
-LIVE_ORDER_PREFIXES = ("/api/v1/orders", "/api/v1/conditional-orders")
+# Every application mutation is denied unless both opt-ins are present.
+# Unknown future mutation endpoints must not silently bypass the safety gate.
 
 
 class TossInvestClient:
@@ -49,7 +47,7 @@ class TossInvestClient:
             # other under the one-token-per-client rule.
             cache_path = Path(self._config.get("token_cache_file", ".token_cache.json"))
             if not cache_path.is_absolute():
-                cache_path = config_mod.REPO_ROOT / cache_path
+                cache_path = config_mod.STATE_ROOT / cache_path
             token_manager = TokenManager(
                 client_id=client_id,
                 client_secret=client_secret,
@@ -57,6 +55,7 @@ class TossInvestClient:
                 cache_path=cache_path,
                 expiry_margin_seconds=self._config.get("token_expiry_margin_seconds", 120),
                 timeout_seconds=self._config.get("request_timeout_seconds", 10),
+                transport=transport,
             )
         self._tokens = token_manager
         self._http = httpx.Client(
@@ -84,7 +83,13 @@ class TossInvestClient:
         *,
         allow_live_order: bool = False,
     ) -> Any:
-        if method.upper() != "GET" and path.startswith(LIVE_ORDER_PREFIXES):
+        # httpx normalizes dot segments and accepts relative/absolute URLs.
+        # Only one representation is accepted, before auth or transport access.
+        if not isinstance(path, str) or not re.fullmatch(
+            r"/api/v1/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+", path
+        ):
+            raise ValueError("Use a canonical /api/v1/ path; pass query values via params")
+        if method.upper() != "GET":
             if not (
                 allow_live_order
                 and os.environ.get(config_mod.ENV_ALLOW_LIVE) == "yes"
@@ -134,6 +139,15 @@ class TossInvestClient:
             if isinstance(payload, dict) and "result" in payload:
                 return payload["result"]
             return payload
+
+
+class ResearchClient(TossInvestClient):
+    """Read-only application boundary; order opt-ins cannot override it."""
+
+    def request(self, method: str, path: str, *args: Any, **kwargs: Any) -> Any:
+        if method.upper() != "GET":
+            raise LiveOrderBlocked("ResearchClient permits GET requests only")
+        return super().request(method, path, *args, **kwargs)
 
 
 def _retry_after_seconds(response: httpx.Response) -> float:

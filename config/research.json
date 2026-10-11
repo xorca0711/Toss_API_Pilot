@@ -1,0 +1,13 @@
+{
+  "minimum_bars": 63,
+  "max_price_age_days": 7,
+  "max_financial_age_days": 550,
+  "scenarios": {
+    "bear": {"eps_growth": "-0.05", "terminal_pe": "10", "discount_rate": "0.12"},
+    "base": {"eps_growth": "0.04", "terminal_pe": "15", "discount_rate": "0.10"},
+    "bull": {"eps_growth": "0.10", "terminal_pe": "20", "discount_rate": "0.09"}
+  },
+  "valuation_years": 2,
+  "entry_margin": "0.20",
+  "atr_invalidation_multiple": "2"
+}

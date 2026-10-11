@@ -1,0 +1,32 @@
+[
+  {
+    "instrument_id": "US:AAPL",
+    "run_id": "4c3de2b413c14191b861ffad27fc059a",
+    "report_id": "deaafb0b42a687cc2d73101a2d5bad2eb651404f2ef51a9c71012985b7d8dd64",
+    "files": {
+      "json": "X:\\GitHub\\Toss_API_Pilot\\docs\\examples\\live\\US-AAPL-deaafb0b42a6.json",
+      "html": "X:\\GitHub\\Toss_API_Pilot\\docs\\examples\\live\\US-AAPL-deaafb0b42a6.html"
+    },
+    "generation_mode": "codex_assisted_import",
+    "model": "Codex session; exact model ID unavailable",
+    "draft_status": "draft",
+    "usage": null,
+    "estimated_cost_usd": null,
+    "human_review_status": "pending"
+  },
+  {
+    "instrument_id": "KR:005930",
+    "run_id": "8bca2a985ac441beaa70c0a2376a8c4d",
+    "report_id": "c31c6dec0f900a0803ee9ee0cd674930c5a0a81b4bc54ab112d739871e157714",
+    "files": {
+      "json": "X:\\GitHub\\Toss_API_Pilot\\docs\\examples\\live\\KR-005930-c31c6dec0f90.json",
+      "html": "X:\\GitHub\\Toss_API_Pilot\\docs\\examples\\live\\KR-005930-c31c6dec0f90.html"
+    },
+    "generation_mode": "codex_assisted_import",
+    "model": "Codex session; exact model ID unavailable",
+    "draft_status": "draft",
+    "usage": null,
+    "estimated_cost_usd": null,
+    "human_review_status": "pending"
+  }
+]

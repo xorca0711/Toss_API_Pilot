@@ -1,0 +1,43 @@
+{
+  "started_at": "2026-10-11T05:38:24+00:00",
+  "trading_enabled": false,
+  "operations": [
+    {
+      "operation": "toss-stocks",
+      "status": "failed",
+      "error_type": "ConnectTimeout",
+      "seconds": 15.25
+    },
+    {
+      "operation": "sec",
+      "status": "not_configured",
+      "missing": "SEC_USER_AGENT"
+    },
+    {
+      "operation": "dart",
+      "status": "not_configured",
+      "missing": "OPENDART_API_KEY"
+    }
+  ],
+  "store": {
+    "instruments": 2,
+    "instrument_reviews": 0,
+    "snapshots": 0,
+    "candles": 0,
+    "facts": 0,
+    "runs": 0,
+    "reports": 0,
+    "recent_runs": []
+  },
+  "finished_at": "2026-10-11T05:38:40+00:00",
+  "transport_events": [
+    {
+      "host": "openapi.tossinvest.com",
+      "path": "/oauth2/token",
+      "method": "POST",
+      "error_type": "ConnectTimeout"
+    }
+  ],
+  "broker_mutations_attempted": 0,
+  "account_reads_attempted": 0
+}

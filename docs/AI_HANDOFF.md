@@ -1,54 +1,86 @@
 # AI handoff
 
-Machine-oriented context for future agent sessions. Human narrative lives in
-README.md and docs/PROJECT_STATE.md.
+Human state: docs/PROJECT_STATE.md. Plan: docs/ROADMAP.md.
+Follow current session instructions; do not assume another application's global
+instructions are loaded.
 
-## Invariants (do not violate)
+## Invariants
 
-- Never execute a live order. Two independent gates: orders.py wrappers
-  (dry_run defaults True; live needs dry_run=False AND process-env
-  TOSS_PILOT_ALLOW_LIVE_ORDERS=yes, which the .env loader refuses to import)
-  and the transport (client.request raises LiveOrderBlocked on any non-GET
-  to /api/v1/orders* or /api/v1/conditional-orders* without
-  allow_live_order=True). Both are user-only decisions. No sandbox upstream.
-- Never request, print, or log TOSSINVEST_CLIENT_SECRET. Credentials enter
-  only via environment or gitignored .env.
-- Do not issue tokens casually: one valid token per client; re-issue kills
-  the previous token. Always go through toss_pilot.auth.TokenManager, which
-  caches in .token_cache.json.
-- All monetary/quantity API values are decimal strings; never convert to
-  float in code paths that resend them.
+- Never execute a live order. ResearchClient is GET-only. The broker client
+  rejects noncanonical paths before auth and requires both explicit flag and
+  process-env opt-in for all non-GET application calls.
+- Never print keys/tokens or store query-string credentials in provenance.
+  The .env allowlist accepts Toss credentials, SEC_USER_AGENT, OPENDART_API_KEY,
+  OPENAI_API_KEY and OPENAI_MODEL; live-order opt-in remains process-only.
+- Use one broker worker: token issuance can invalidate another process's token.
+- API monetary/quantity values remain decimal strings. Risk calculations may
+  use floats internally; they are never resent as order values.
+- Synthetic fixtures/reports are explicitly labeled and isolated from real data.
+- No score or scenario is a validated investment recommendation.
+- Preserve raw snapshots and amendment history. Missing values are not zeros.
+- Do not publish account details or raw research data to Notion implicitly.
+- Default to packet export and Codex-assisted draft import. The owner has no
+  separate AI API credentials/credits; never silently activate paid API calls.
+- Claims need sources and both-horizon gates. Validation does not prove semantic
+  entailment; human review remains pending. Never fabricate model usage or costs.
 
-## Facts (verified against spec v1.2.14, vendored at spec/openapi-1.2.14.json)
+## Code map
 
-- Base https://openapi.tossinvest.com; POST /oauth2/token (form-encoded
-  client_credentials); Bearer auth; account/asset/order endpoints also need
-  X-Tossinvest-Account: {accountSeq} from GET /api/v1/accounts.
-- Envelopes: success {result: ...}; business errors {error: {requestId,
-  code, message, data}}; OAuth errors {error, error_description}.
-- 429 carries Retry-After and X-RateLimit-*; headers are authoritative over
-  the config table. Per-group TPS in config/api.json.
-- Order rules: quantity xor orderAmount; orderAmount is US MARKET only;
-  LIMIT needs price, MARKET forbids it; confirmHighValueOrder for >= 100M
-  KRW; > 3B KRW rejected (max-order-amount-exceeded); modify/cancel return a
-  NEW orderId; opposite-direction pending order on the same symbol is 422.
-- IP allowlist enforced at the edge (403 on unlisted IPs, token endpoint
-  included). KR orders may 422 prerequisite-required or
-  investor-exchange-not-integrated until in-app settings are completed.
+- src/toss_pilot: original auth/client/market/account/order/CLI.
+- research/store.py: SQLite schema version 2; additive migration from version 1.
+- research/providers.py: official-source adapters and conservative normalization.
+- research/analysis.py: annual ratios, daily technicals, P/E scenarios, quality gates.
+- research/report.py: escaped, self-contained HTML and JSON.
+- research/evidence.py: bounded official HTML collection, dated source imports,
+  retained original HTML/hash, explicit publication metadata.
+- research/ai.py: frozen packets, strict draft checks, optional Responses transport,
+  usage/cost provenance and safe report assembly. No tools or trading exposed.
+- research/demo.py: invented data; fixed 2026-10-11 report cutoff.
+- research/cli.py: register, review-basis, import, status, collect-candles,
+  collect-sec, collect-dart, report, demo, collect-document, document-import,
+  research-packet, ai-import and explicit optional ai-openai.
+- config/research.json: reviewable assumptions, bundled in the wheel.
+- scripts/audit_contract.py: public contract fetch/hash/drift evidence.
+- scripts/wheel_smoke.py: wheel installation and demo from another directory.
+- scripts/validate_live.py: serial broker/public API validation with a second
+  request allowlist; scripts/collect_research_examples.py: three fixed disclosures.
 
-## Repo mechanics
+## Data and time
 
-- Windows 11 ARM64, no C compiler; uv-managed .venv (CPython 3.12.10
-  arm64); pure-Python deps only (httpx, pytest). uv sync then
-  .venv\Scripts\python.exe -m pytest -q (25 tests, offline).
-- Branch model: Claude/<topic> plus PR to main; tracked tree stays clean.
-- Config: config/api.json; TOSS_PILOT_CONFIG env var overrides its path.
-- Session artefacts: research journal at
-  C:\Users\dream\.claude\projects\X--GitHub-Toss-API-Pilot\
-  2c707fc8-41f4-4560-a0da-9bb397973fb2\subagents\workflows\wf_8ed24b57-57e\
-  journal.jsonl (5 research slices + fact-check + critic).
-- Capability-map artifact (owner-facing report):
-  https://claude.ai/code/artifact/db5d3b21-02e1-4e00-abeb-7cc43e714089
-- One-time scheduled task toss-pilot-continue (06:00 KST 2026-08-17) exists
-  as a token-runout safety net; it self-disables after firing and stops
-  early if the PR is already open. Disable it if work completes first.
+Default editable state is the repository root; wheels use a per-user application
+directory. --db overrides the SQLite path. data/, reports/, token cache and all
+SQLite files are ignored. docs/examples holds synthetic reports;
+docs/examples/live holds real-source reports that explicitly withhold price/valuation outputs.
+
+Timestamps normalize to UTC. Date-only filing availability is the following
+05:00 UTC for SEC or UTC midnight for DART. Eligibility also requires first_seen <= as_of.
+Daily candle gaps use a calendar-day heuristic, not an exchange calendar.
+Per-share verification is a dated human review; no automatic split engine exists.
+Initial DART normalization: annual consolidated December-year-end only.
+
+## Verification
+
+uv sync --locked
+uv run pytest -q --basetemp .pytest_cache/unique-check --junitxml=docs/evidence/milestone4-tests.xml
+uv build --wheel
+uv run python scripts/wheel_smoke.py
+
+Use a fresh pytest basetemp name in this Windows sandbox. Tests prohibit real
+httpx HTTPTransport access. Public network fetches can fail in this environment.
+Windows CLI launcher installation required unsandboxed execution in this session.
+Use a writable UV_CACHE_DIR for local builds when sandbox caches fail.
+
+Read docs/evidence/milestone4-verification.json and docs/MILESTONE4.md for final
+results. Toss timed out at OAuth connection; SEC/DART settings were absent.
+Official Apple/Samsung HTML collection succeeded. Hosted Linux/Windows CI later
+passed for implementation commit f5b0f12, published in PR #2; see PROJECT_STATE
+for the workflow link. Do not claim the full upstream contract is current or
+authenticated broker reads succeeded.
+The old no-push-API assertion is superseded by current official WebSocket docs.
+
+## Remaining work
+
+See M5-M8 in ROADMAP and AUTOMATION_AND_STORAGE. Notion is a planned compact
+review/publishing surface, SQLite the current authoritative store. No schedule
+or external publishing integration exists yet. Multi-agent debate, ML frameworks
+and trading automation are not part of this delivery.

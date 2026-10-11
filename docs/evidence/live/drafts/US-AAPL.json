@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "packet_hash": "659c279ea302b8c924a835085c094040c8f609d0bce93d24c4a1f9d088064586",
+  "status": "draft",
+  "summary": "Research draft for human review; consult the cited evidence and data gaps.",
+  "short_horizon": {
+    "stance": "insufficient_data",
+    "thesis": [
+      {
+        "kind": "inference",
+        "text": "The reported revenue expansion supports monitoring operating momentum; it does not establish a price entry.",
+        "citations": [
+          {
+            "evidence_id": "doc-046d09d740d81827-0",
+            "quote": "quarterly revenue of $109.4 billion"
+          }
+        ]
+      }
+    ],
+    "counterarguments": [
+      {
+        "kind": "inference",
+        "text": "Tariff refunds benefited reported earnings, so headline growth may overstate recurring improvement.",
+        "citations": [
+          {
+            "evidence_id": "doc-046d09d740d81827-0",
+            "quote": "favorable impact of $0.11"
+          }
+        ]
+      }
+    ],
+    "catalysts": []
+  },
+  "long_horizon": {
+    "stance": "insufficient_data",
+    "thesis": [
+      {
+        "kind": "inference",
+        "text": "An expanding device base supports a durable ecosystem thesis, conditional on continued monetization and customer retention.",
+        "citations": [
+          {
+            "evidence_id": "doc-046d09d740d81827-0",
+            "quote": "installed base of active devices"
+          }
+        ]
+      }
+    ],
+    "counterarguments": [
+      {
+        "kind": "inference",
+        "text": "Dependence on outside suppliers and manufacturing creates execution exposure that revenue growth alone does not resolve.",
+        "citations": [
+          {
+            "evidence_id": "doc-046d09d740d81827-2",
+            "quote": "reliance on third parties"
+          }
+        ]
+      }
+    ],
+    "catalysts": [
+      {
+        "kind": "monitor",
+        "text": "Monitor whether later disclosures sustain cash generation after the reported strong quarter; no event date is asserted.",
+        "citations": [
+          {
+            "evidence_id": "doc-046d09d740d81827-0",
+            "quote": "operating cash flow"
+          }
+        ]
+      }
+    ]
+  },
+  "missing_information": [
+    "Adjusted daily price history and current quotes are unavailable after the broker connection timeout.",
+    "Annual cash flow, balance sheet, diluted earnings, and corporate-action consistency have not been validated.",
+    "This evidence selection does not establish comprehensive filing or news coverage.",
+    "Entry and exit prices, historical drawdown, and investment merit remain undetermined."
+  ]
+}

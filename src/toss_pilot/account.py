@@ -86,8 +86,8 @@ def list_orders(
 
 
 def get_order(client: TossInvestClient, account_seq: int, order_id: str) -> Any:
-    """Order detail, including the execution block. Polling this (rate group
-    ORDER_HISTORY, 5/s) is the only way to observe fills; the API has no push."""
+    """Order detail, including the execution block. Current upstream docs also
+    describe WebSocket order events; this client implements the REST read only."""
     from toss_pilot.orders import _check_path_id
 
     path = f"/api/v1/orders/{_check_path_id('order_id', order_id)}"

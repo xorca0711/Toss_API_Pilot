@@ -1,0 +1,94 @@
+{
+  "verified_at": "2026-10-11T06:04:38+00:00",
+  "baseline": "milestone4-verification.json",
+  "baseline_tests": 120,
+  "baseline_implementation_hashes_matched_before_cleanup": true,
+  "configured_credentials_in_publishable_files": false,
+  "cleanup": [
+    {
+      "file": "docs/AUTOMATION_AND_STORAGE.md",
+      "before_sha256": "4a37f63a7c3e303d7f51eaa252145cad57b9611555dd09bef4f3be9683ece538",
+      "after_sha256": "1ca24488aedc8c870d0f58091bc7a71a3fbee74760eede7938a1c78c57aaa38d",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": null
+    },
+    {
+      "file": "docs/DELIVERY.md",
+      "before_sha256": "1ff77fbb6051349e9a470bceb213025f73b95fd75aa55921e9f63fd55644d173",
+      "after_sha256": "dc3b1e74b470e9f2d2f461d1351f7a0fcf5317b1607fa0776706578fa5bdf8ee",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": null
+    },
+    {
+      "file": "docs/RESEARCH_GUIDE.md",
+      "before_sha256": "5622aef8639dd039d459d1256b00922ceee8d9cf0f70c47dcf86cd5b3fdbb793",
+      "after_sha256": "ff33cba1ac9c7d521c9c408678416be469dbf1f0f60b3e3ca618a71a00f0111a",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": null
+    },
+    {
+      "file": "scripts/audit_contract.py",
+      "before_sha256": "241905eddf705e226d4d8c5d51528803f9e69ee2dee8f424d231aec7bec2a4b8",
+      "after_sha256": "d6a963665c65e46bea322722cd33d13f68efeef23782ebf51c43fea6dbad8d0d",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "scripts/wheel_smoke.py",
+      "before_sha256": "6fcc9aef84f8d87206e26f3a7663dc4364bc50850000d5a26d1d580e414264fd",
+      "after_sha256": "a14594f8b4a4ab07ab5969ad70599dbb4a9b968c5b163c0be2f333efa91edff0",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "src/toss_pilot/research/analysis.py",
+      "before_sha256": "65e9db2eeb8109b906c90a1e7001f7bf1727368d6727087b40f02ba58e8a79da",
+      "after_sha256": "4c0abd773c51ff91b853f34661f27a4ca08fec071aa0e3c8bfb8ed4418402ede",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "src/toss_pilot/research/cli.py",
+      "before_sha256": "fbcc4254f9ec2e030b736a613c23c412d6b4d5ab59861fd361eb9407d1fe09d1",
+      "after_sha256": "43ce11cb65dd2433141d3168837823f133590b6b0f2e6dcf447dc7d3b4bf867d",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "src/toss_pilot/research/demo.py",
+      "before_sha256": "38340f8a13cdf6685129e41fc55ee5d5cbdb1ed780d1d0f689816a6b4e8c13f5",
+      "after_sha256": "5a8ba121cc463dc94672aae306b4ea40748145339e9cb91cad3a8b52c935a00f",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "src/toss_pilot/research/providers.py",
+      "before_sha256": "05494ac89c65a9688febe983d52ecdbc07f5bddbc674b9d1907f2d0a9699a719",
+      "after_sha256": "c855258be6a0c1bcf30979576cadf6e15c42b60cbdbdd9c38b30446615d65800",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "src/toss_pilot/research/report.py",
+      "before_sha256": "0fe73b00b21335deeab8d23bec2c88d51ce646497eff4a77f64ccc0eab906d63",
+      "after_sha256": "d02f0013c3d41c3c395b761e537988fcffd7dd963917d00a4a1c1c6f4b304bb7",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "src/toss_pilot/research/store.py",
+      "before_sha256": "0da8ea8cf1870bb499ab520cd8a3c380cf19f61965901514420542777e75ccf9",
+      "after_sha256": "ee8967ed9296b1a63640036500c85a5ca22651770ec668ae35c6ed667de2708a",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    },
+    {
+      "file": "tests/test_research.py",
+      "before_sha256": "a4d81fa54a016264da695af7fabc8be8f0376fef1aeab834a8b847d52e337260",
+      "after_sha256": "86566cb9a930a057876fb42ec4634454f76a988d9e5ea3b5fb3de83da94b7b24",
+      "change": "remove terminal blank lines only",
+      "ast_equivalent": true
+    }
+  ],
+  "test_reuse": "No executable Python AST changed; prior test and wheel checks remain applicable. Hosted CI will run on publication."
+}

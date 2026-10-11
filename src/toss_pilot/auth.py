@@ -70,7 +70,10 @@ class TokenManager:
 
     def _save_cache(self) -> None:
         payload = {"access_token": self._token, "expires_at": self._expires_at}
-        self._cache_path.write_text(json.dumps(payload), encoding="utf-8")
+        self._cache_path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = self._cache_path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(payload), encoding="utf-8")
+        temporary.replace(self._cache_path)
 
     def _issue(self) -> None:
         with httpx.Client(transport=self._transport, timeout=self._timeout) as http:

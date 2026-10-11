@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "packet_hash": "ee70c16caf05e1de8c001dd1251704106c2a49dcaab1ef9d06371a5ce9b366b1",
+  "status": "draft",
+  "summary": "Research draft for human review; consult the cited evidence and data gaps.",
+  "short_horizon": {
+    "stance": "insufficient_data",
+    "thesis": [
+      {
+        "kind": "observation",
+        "text": "The latest issuer release provides preliminary quarterly sales guidance; the figure is an estimate.",
+        "citations": [
+          {
+            "evidence_id": "doc-424fc309c6df15b2-0",
+            "quote": "Consolidated Sales: Approximately 195 trillion Korean won"
+          }
+        ]
+      }
+    ],
+    "counterarguments": [
+      {
+        "kind": "inference",
+        "text": "Preliminary guidance requires confirmation in reported results and cannot by itself establish an entry point.",
+        "citations": [
+          {
+            "evidence_id": "doc-424fc309c6df15b2-0",
+            "quote": "The above estimates are based on K-IFRS."
+          }
+        ]
+      }
+    ],
+    "catalysts": [
+      {
+        "kind": "monitor",
+        "text": "Monitor whether device margins recover as component costs change; no reporting date is assumed.",
+        "citations": [
+          {
+            "evidence_id": "doc-38bb03048e315a4c-3",
+            "quote": "elevated component cost pressures"
+          }
+        ]
+      }
+    ]
+  },
+  "long_horizon": {
+    "stance": "insufficient_data",
+    "thesis": [
+      {
+        "kind": "inference",
+        "text": "The server-focused memory business supports an AI infrastructure demand thesis, conditional on durable customer spending.",
+        "citations": [
+          {
+            "evidence_id": "doc-38bb03048e315a4c-0",
+            "quote": "primary focus on server products"
+          }
+        ]
+      }
+    ],
+    "counterarguments": [
+      {
+        "kind": "inference",
+        "text": "Weaker demand in other applications cautions against treating semiconductor strength as uniform across end markets.",
+        "citations": [
+          {
+            "evidence_id": "doc-38bb03048e315a4c-1",
+            "quote": "partial demand moderation"
+          }
+        ]
+      }
+    ],
+    "catalysts": [
+      {
+        "kind": "monitor",
+        "text": "Monitor whether production expansion changes supply constraints and the sustainability of memory profitability.",
+        "citations": [
+          {
+            "evidence_id": "doc-38bb03048e315a4c-1",
+            "quote": "supply constraints are expected to continue"
+          }
+        ]
+      }
+    ]
+  },
+  "missing_information": [
+    "Adjusted daily price history and current quotes are unavailable after the broker connection timeout.",
+    "Annual cash flow, balance sheet, diluted earnings, and corporate-action consistency have not been validated.",
+    "This evidence selection does not establish comprehensive filing or news coverage.",
+    "Entry and exit prices, historical drawdown, and investment merit remain undetermined."
+  ]
+}
