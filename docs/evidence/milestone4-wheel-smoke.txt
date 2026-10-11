@@ -1,0 +1,17 @@
+Using CPython 3.12.10 interpreter at: .venv\Scripts\python.exe
+Creating virtual environment at: .pytest_cache\wheel\tmpss_rsz_h\env
+Activate with: .pytest_cache\wheel\tmpss_rsz_h\env\Scripts\activate
+Using Python 3.12.10 environment at: .pytest_cache\wheel\tmpss_rsz_h\env
+Resolved 8 packages in 21ms
+Prepared 1 package in 24ms
+Installed 8 packages in 379ms
+ + anyio==4.14.2
+ + certifi==2026.7.22
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpx==0.28.1
+ + idna==3.18
+ + toss-pilot==0.3.0 (from file:///X:/GitHub/Toss_API_Pilot/dist/toss_pilot-0.3.0-py3-none-any.whl)
+ + typing-extensions==4.16.0
+{"version": "0.3.0", "installed_config": true}
+Wheel CLI and offline demo passed outside the repository

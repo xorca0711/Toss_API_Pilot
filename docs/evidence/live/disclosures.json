@@ -1,0 +1,56 @@
+{
+  "started_at": "2026-10-11T05:49:48+00:00",
+  "sources": [
+    {
+      "instrument_id": "US:AAPL",
+      "url": "https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/",
+      "status": "succeeded",
+      "document_id": "046d09d740d8182731314c2a4a94267db8fd9513fdea3fdfc218663889d99d29"
+    },
+    {
+      "instrument_id": "KR:005930",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+      "status": "succeeded",
+      "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8"
+    },
+    {
+      "instrument_id": "KR:005930",
+      "url": "https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026",
+      "status": "succeeded",
+      "document_id": "424fc309c6df15b210627ec9dc7f16192eccbf344759b6dfe0f1ec9680c648e9"
+    }
+  ],
+  "packets": [
+    {
+      "instrument_id": "US:AAPL",
+      "packet_hash": "659c279ea302b8c924a835085c094040c8f609d0bce93d24c4a1f9d088064586",
+      "file": "X:\\GitHub\\Toss_API_Pilot\\data\\research-packets\\US-AAPL.json",
+      "coverage": {
+        "stale_documents_excluded": 0,
+        "context_truncated": false,
+        "source_count": 1,
+        "scope": "Selected supplied documents only; not a comprehensive news or filings search"
+      },
+      "required_stances": {
+        "short_horizon": "insufficient_data",
+        "long_horizon": "insufficient_data"
+      }
+    },
+    {
+      "instrument_id": "KR:005930",
+      "packet_hash": "ee70c16caf05e1de8c001dd1251704106c2a49dcaab1ef9d06371a5ce9b366b1",
+      "file": "X:\\GitHub\\Toss_API_Pilot\\data\\research-packets\\KR-005930.json",
+      "coverage": {
+        "stale_documents_excluded": 0,
+        "context_truncated": false,
+        "source_count": 2,
+        "scope": "Selected supplied documents only; not a comprehensive news or filings search"
+      },
+      "required_stances": {
+        "short_horizon": "insufficient_data",
+        "long_horizon": "insufficient_data"
+      }
+    }
+  ],
+  "finished_at": "2026-10-11T05:49:50+00:00"
+}

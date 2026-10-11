@@ -14,7 +14,16 @@ from toss_pilot.errors import CredentialsMissing
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 _REPO_ROOT = REPO_ROOT
-DEFAULT_CONFIG_PATH = REPO_ROOT / "config" / "api.json"
+_PACKAGED_CONFIG = Path(__file__).resolve().parent / "data" / "api.json"
+DEFAULT_CONFIG_PATH = (
+    _PACKAGED_CONFIG if _PACKAGED_CONFIG.is_file() else REPO_ROOT / "config" / "api.json"
+)
+# Wheels use a per-user directory, never site-packages or an arbitrary CWD.
+STATE_ROOT = (
+    REPO_ROOT if (REPO_ROOT / "pyproject.toml").is_file()
+    else Path(os.environ.get("LOCALAPPDATA") or os.environ.get("XDG_STATE_HOME")
+              or Path.home() / ".local" / "state") / "toss-pilot"
+)
 
 ENV_CLIENT_ID = "TOSSINVEST_CLIENT_ID"
 ENV_CLIENT_SECRET = "TOSSINVEST_CLIENT_SECRET"
@@ -25,7 +34,10 @@ ENV_CONFIG_PATH = "TOSS_PILOT_CONFIG"
 # file can never silently arm the gate for future runs.
 ENV_ALLOW_LIVE = "TOSS_PILOT_ALLOW_LIVE_ORDERS"
 
-_ENV_FILE_ALLOWLIST = (ENV_CLIENT_ID, ENV_CLIENT_SECRET)
+_ENV_FILE_ALLOWLIST = (
+    ENV_CLIENT_ID, ENV_CLIENT_SECRET, "SEC_USER_AGENT", "OPENDART_API_KEY",
+    "OPENAI_API_KEY", "OPENAI_MODEL",
+)
 
 
 def load_config(path: str | Path | None = None) -> dict:
@@ -37,7 +49,7 @@ def load_config(path: str | Path | None = None) -> dict:
         return json.load(fh)
 
 
-def load_env_file(path: str | Path = REPO_ROOT / ".env") -> None:
+def load_env_file(path: str | Path = STATE_ROOT / ".env") -> None:
     """Minimal .env loader: KEY=VALUE lines, no quoting rules, no expansion.
     Only credential keys are imported (allowlist); in particular the live-order
     flag is never read from a file. Existing environment variables are never
@@ -45,13 +57,15 @@ def load_env_file(path: str | Path = REPO_ROOT / ".env") -> None:
     env_path = Path(path)
     if not env_path.is_file():
         return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
+    for line in env_path.read_text(encoding="utf-8-sig").splitlines():
         line = line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
         key, _, value = line.partition("=")
         key = key.strip()
         value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+            value = value[1:-1]
         if key in _ENV_FILE_ALLOWLIST and key not in os.environ:
             os.environ[key] = value
 

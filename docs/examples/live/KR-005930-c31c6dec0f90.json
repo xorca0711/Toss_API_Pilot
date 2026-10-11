@@ -1,0 +1,275 @@
+{
+  "as_of": "2026-10-11T05:49:50+00:00",
+  "assumptions": {
+    "atr_invalidation_multiple": "2",
+    "entry_margin": "0.20",
+    "max_financial_age_days": 550,
+    "max_price_age_days": 7,
+    "minimum_bars": 63,
+    "scenarios": {
+      "base": {
+        "discount_rate": "0.10",
+        "eps_growth": "0.04",
+        "terminal_pe": "15"
+      },
+      "bear": {
+        "discount_rate": "0.12",
+        "eps_growth": "-0.05",
+        "terminal_pe": "10"
+      },
+      "bull": {
+        "discount_rate": "0.09",
+        "eps_growth": "0.10",
+        "terminal_pe": "20"
+      }
+    },
+    "valuation_years": 2
+  },
+  "assumptions_hash": "603299964c4631fa8515ba34f4d2bf42815b513cd1139be12fa2f91964b27f7e",
+  "data_label": "SOURCE-ATTRIBUTED RESEARCH; CHECK COVERAGE AND FRESHNESS",
+  "engine_version": "0.2.0",
+  "financials": {},
+  "input_hash": "f15b26e11bbc4b840d5ae1be961a6ea17047ccfa2e4922ecdcc1450421ad661d",
+  "instrument": {
+    "corp_code": "00126380",
+    "currency": "KRW",
+    "id": "KR:005930",
+    "market": "KR",
+    "name": "Samsung Electronics",
+    "sector": "unknown",
+    "symbol": "005930"
+  },
+  "limitations": [
+    "AI draft requires human review. Citations and valid structure do not prove entailment or investment merit.",
+    "Historical price drawdown is not strategy drawdown or a bound on future loss; gaps can exceed stop references.",
+    "Earnings valuation is a discounted terminal P/E scenario, excludes dividends, and is not a DCF or price forecast.",
+    "CFO less reported PP&E capex is a limited free-cash-flow proxy, not cash available to equity holders.",
+    "Annual statements only; no consensus estimates, peer dataset, TTM assembly, or portfolio/FX stress model yet.",
+    "252-day volatility convention; observations and calendar-day freshness checks are not an exchange calendar.",
+    "Both publication date and first collection date constrain historical reports; current downloads do not prove point-in-time coverage."
+  ],
+  "long_horizon": {
+    "horizon": "6-24 months",
+    "scenarios": {},
+    "status": "insufficient_data",
+    "trailing_pe": null
+  },
+  "market": {
+    "bars": 0
+  },
+  "market_sources": [],
+  "quality": {
+    "financial_issues": [
+      "No eligible annual financial facts",
+      "Missing annual revenue",
+      "Missing annual net_income",
+      "Missing annual equity",
+      "Missing annual operating_cash_flow"
+    ],
+    "price_issues": [
+      "Need 63 daily bars; have 0"
+    ],
+    "valuation_issues": [
+      "Missing annual equity",
+      "Missing annual net_income",
+      "Missing annual operating_cash_flow",
+      "Missing annual revenue",
+      "Need 63 daily bars; have 0",
+      "No eligible annual financial facts",
+      "Per-share/split consistency has not been verified for this instrument",
+      "Per-share/split verification does not cover the analysis date",
+      "Positive annual diluted EPS unavailable",
+      "Sector requires a specialized valuation model or explicit classification"
+    ]
+  },
+  "schema_version": 1,
+  "short_horizon": {
+    "horizon": "2-12 weeks",
+    "status": "insufficient_data"
+  },
+  "snapshot_ids": [],
+  "sources": [],
+  "ai_research": {
+    "draft": {
+      "schema_version": 1,
+      "packet_hash": "ee70c16caf05e1de8c001dd1251704106c2a49dcaab1ef9d06371a5ce9b366b1",
+      "status": "draft",
+      "summary": "Research draft for human review; consult the cited evidence and data gaps.",
+      "short_horizon": {
+        "stance": "insufficient_data",
+        "thesis": [
+          {
+            "kind": "observation",
+            "text": "The latest issuer release provides preliminary quarterly sales guidance; the figure is an estimate.",
+            "citations": [
+              {
+                "evidence_id": "doc-424fc309c6df15b2-0",
+                "quote": "Consolidated Sales: Approximately 195 trillion Korean won"
+              }
+            ]
+          }
+        ],
+        "counterarguments": [
+          {
+            "kind": "inference",
+            "text": "Preliminary guidance requires confirmation in reported results and cannot by itself establish an entry point.",
+            "citations": [
+              {
+                "evidence_id": "doc-424fc309c6df15b2-0",
+                "quote": "The above estimates are based on K-IFRS."
+              }
+            ]
+          }
+        ],
+        "catalysts": [
+          {
+            "kind": "monitor",
+            "text": "Monitor whether device margins recover as component costs change; no reporting date is assumed.",
+            "citations": [
+              {
+                "evidence_id": "doc-38bb03048e315a4c-3",
+                "quote": "elevated component cost pressures"
+              }
+            ]
+          }
+        ]
+      },
+      "long_horizon": {
+        "stance": "insufficient_data",
+        "thesis": [
+          {
+            "kind": "inference",
+            "text": "The server-focused memory business supports an AI infrastructure demand thesis, conditional on durable customer spending.",
+            "citations": [
+              {
+                "evidence_id": "doc-38bb03048e315a4c-0",
+                "quote": "primary focus on server products"
+              }
+            ]
+          }
+        ],
+        "counterarguments": [
+          {
+            "kind": "inference",
+            "text": "Weaker demand in other applications cautions against treating semiconductor strength as uniform across end markets.",
+            "citations": [
+              {
+                "evidence_id": "doc-38bb03048e315a4c-1",
+                "quote": "partial demand moderation"
+              }
+            ]
+          }
+        ],
+        "catalysts": [
+          {
+            "kind": "monitor",
+            "text": "Monitor whether production expansion changes supply constraints and the sustainability of memory profitability.",
+            "citations": [
+              {
+                "evidence_id": "doc-38bb03048e315a4c-1",
+                "quote": "supply constraints are expected to continue"
+              }
+            ]
+          }
+        ]
+      },
+      "missing_information": [
+        "Adjusted daily price history and current quotes are unavailable after the broker connection timeout.",
+        "Annual cash flow, balance sheet, diluted earnings, and corporate-action consistency have not been validated.",
+        "This evidence selection does not establish comprehensive filing or news coverage.",
+        "Entry and exit prices, historical drawdown, and investment merit remain undetermined."
+      ]
+    },
+    "generation_mode": "codex_assisted_import",
+    "model": "Codex session; exact model ID unavailable",
+    "model_identity_verified": false,
+    "prompt_version": "grounded-research-1",
+    "prompt_hash": "18c8c9ec18a5cb0ad1e2571dc54fd106309e911b94cec9ce48a4a69961f4f6cb",
+    "packet_hash": "ee70c16caf05e1de8c001dd1251704106c2a49dcaab1ef9d06371a5ce9b366b1",
+    "draft_hash": "a380d3ee9fd93cfa39441a832015f0240c4e40244cc3f470b83d9f6ed5dba54b",
+    "created_at": "2026-10-11T05:51:00+00:00",
+    "human_review_status": "pending",
+    "validation": "Structure, citation membership, exact excerpts, numeric references and abstention gates passed. Semantic entailment is not automatically verified.",
+    "usage": null,
+    "estimated_cost_usd": null,
+    "cost_status": "unavailable",
+    "coverage": {
+      "context_truncated": false,
+      "scope": "Selected supplied documents only; not a comprehensive news or filings search",
+      "source_count": 2,
+      "stale_documents_excluded": 0
+    },
+    "evidence": [
+      {
+        "document_id": "424fc309c6df15b210627ec9dc7f16192eccbf344759b6dfe0f1ec9680c648e9",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-424fc309c6df15b2-0",
+        "kind": "issuer_release",
+        "published_at": "2026-10-09T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-third-quarter-2026",
+        "title": "Samsung preliminary third-quarter guidance, October 2026"
+      },
+      {
+        "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-38bb03048e315a4c-0",
+        "kind": "issuer_release",
+        "published_at": "2026-07-31T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+        "title": "Samsung second-quarter results, July 2026"
+      },
+      {
+        "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-38bb03048e315a4c-1",
+        "kind": "issuer_release",
+        "published_at": "2026-07-31T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+        "title": "Samsung second-quarter results, July 2026"
+      },
+      {
+        "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-38bb03048e315a4c-2",
+        "kind": "issuer_release",
+        "published_at": "2026-07-31T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+        "title": "Samsung second-quarter results, July 2026"
+      },
+      {
+        "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-38bb03048e315a4c-3",
+        "kind": "issuer_release",
+        "published_at": "2026-07-31T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+        "title": "Samsung second-quarter results, July 2026"
+      },
+      {
+        "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-38bb03048e315a4c-4",
+        "kind": "issuer_release",
+        "published_at": "2026-07-31T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+        "title": "Samsung second-quarter results, July 2026"
+      },
+      {
+        "document_id": "38bb03048e315a4c83f0cf7a3972eb204bc88873d11d4ec48b3fdee7babb06b8",
+        "extraction": "source_text",
+        "fetched_at": "2026-10-11T05:47:43+00:00",
+        "id": "doc-38bb03048e315a4c-5",
+        "kind": "issuer_release",
+        "published_at": "2026-07-31T00:00:00+00:00",
+        "source_url": "https://news.samsung.com/global/samsung-electronics-announces-second-quarter-2026-results",
+        "title": "Samsung second-quarter results, July 2026"
+      }
+    ]
+  }
+}

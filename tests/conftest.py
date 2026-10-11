@@ -11,6 +11,13 @@ from toss_pilot.client import TossInvestClient
 BASE_URL = "https://openapi.tossinvest.com"
 
 
+@pytest.fixture(autouse=True)
+def prevent_live_http(monkeypatch):
+    def blocked(*args, **kwargs):
+        pytest.fail("Offline tests must not use a real HTTP transport")
+    monkeypatch.setattr(httpx.HTTPTransport, "handle_request", blocked)
+
+
 def default_token_handler(request: httpx.Request) -> httpx.Response:
     return httpx.Response(
         200,
